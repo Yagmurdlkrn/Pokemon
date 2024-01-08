@@ -1,16 +1,19 @@
-# This is a sample Python script.
+import requests
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+def get_pokemon_data():
+    response = requests.get("https://pokeapi.co/api/v2/pokemon?limit=151")
+    if response.status_code == 200:
+        return response.json().get("results")
+
+user_input = input("Enter Pokemon: ").lower()
+def get_pokemon_url(user_input):
+    pokemon_response = get_pokemon_data()
+    for pokemon in pokemon_response:
+        if pokemon["name"] == user_input:
+            return pokemon["url"]
+
+pokemon_url = get_pokemon_url(user_input)
+print(pokemon_url)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
