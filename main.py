@@ -1,4 +1,6 @@
 import requests
+from tkinter import *
+
 
 def get_pokemon_data():
     response = requests.get("https://pokeapi.co/api/v2/pokemon?limit=151")
@@ -13,7 +15,9 @@ def get_pokemon_url(user_input):
             return pokemon["url"]
 
 pokemon_url = get_pokemon_url(user_input)
-print(pokemon_url)
+pokemon_details = requests.get(pokemon_url)
+pokemon = pokemon_details.json().get("sprites").get("front_default")
+print(pokemon)
 
 
 
