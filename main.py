@@ -19,5 +19,10 @@ pokemon_details = requests.get(pokemon_url)
 pokemon = pokemon_details.json().get("sprites").get("front_default")
 print(pokemon)
 
+window = Tk()
+window.title(user_input.upper())
+
+window.mainloop()
+
 
 
